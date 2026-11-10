@@ -10,7 +10,6 @@ import HeadquartersCards from "./overlay/HeadquartersCards";
 import AboutCards from "./overlay/AboutCards";
 
 const WorldCanvas = dynamic(() => import("./WorldCanvas"), { ssr: false });
-const MOBILE_TOTAL_VH = 600;
 
 function useMedia(query: string) {
   return useSyncExternalStore(
@@ -90,13 +89,14 @@ export default function World() {
         const s = sceneAt(i, p);
         still.style.opacity = String(s.opacity);
         still.style.visibility = s.covered ? "hidden" : "visible";
-        still.style.transform = `scale(${1 + s.local * 0.22})`;
+        const zoom = desktop ? 0.22 : SCENES[i].base[1] - 1;
+        still.style.transform = `scale(${1 + s.local * zoom})`;
       });
     };
 
     gsap.ticker.add(tick);
     return () => gsap.ticker.remove(tick);
-  }, []);
+  }, [desktop]);
 
   return (
     <section
@@ -104,7 +104,7 @@ export default function World() {
       id="world"
       aria-label="CSMT network"
       className="relative bg-[#09080b]"
-      style={{ height: `calc(100svh + ${desktop ? TOTAL_VH : MOBILE_TOTAL_VH}vh)` }}
+      style={{ height: `calc(100svh + ${TOTAL_VH}vh)` }}
     >
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {useGL ? (
