@@ -10,6 +10,7 @@ import HeadquartersCards from "./overlay/HeadquartersCards";
 import AboutCards from "./overlay/AboutCards";
 
 const WorldCanvas = dynamic(() => import("./WorldCanvas"), { ssr: false });
+const MOBILE_TOTAL_VH = 600;
 
 function useMedia(query: string) {
   return useSyncExternalStore(
@@ -103,7 +104,7 @@ export default function World() {
       id="world"
       aria-label="CSMT network"
       className="relative bg-[#09080b]"
-      style={{ height: `calc(100svh + ${TOTAL_VH}vh)` }}
+      style={{ height: `calc(100svh + ${desktop ? TOTAL_VH : MOBILE_TOTAL_VH}vh)` }}
     >
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {useGL ? (
@@ -112,7 +113,7 @@ export default function World() {
           SCENES.map((s, i) => (
             <div
               key={s.id}
-              className="absolute inset-x-0 top-0 h-[68svh] overflow-hidden md:inset-0 md:h-auto"
+              className="absolute inset-0 overflow-hidden"
             >
               <div
                 ref={(el) => {
@@ -130,8 +131,6 @@ export default function World() {
 
         {/* shading, film grain and the soft join with the hero */}
         <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(9,8,11,0.8)_100%)] md:block" />
-        {/* phones: the picture melts into the page below it */}
-        <div className="pointer-events-none absolute inset-x-0 top-[40svh] h-[28svh] bg-gradient-to-b from-transparent to-[#09080b] md:hidden" />
         <div className="grain" />
         <div
           ref={topFade}

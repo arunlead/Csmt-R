@@ -14,7 +14,8 @@ export default function SmoothScroll({
 }) {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    const touchPhone = window.matchMedia("(max-width: 767px)").matches;
+    if (reduce || touchPhone) return;
 
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
