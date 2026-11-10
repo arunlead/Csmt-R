@@ -127,3 +127,8 @@ html.lenis, html.lenis body { height: auto; }
 /* defense log */
 .logscroll { animation: logmove 16s linear infinite; }
 @keyframes logmove { to { transform: translateY(-50%); } }
+@media (max-width: 767px) {
+  .grain {
+    display: none;
+  }
+}

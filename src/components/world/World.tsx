@@ -89,7 +89,7 @@ export default function World() {
         const s = sceneAt(i, p);
         still.style.opacity = String(s.opacity);
         still.style.visibility = s.covered ? "hidden" : "visible";
-        still.style.transform = `scale(${1 + s.local * 0.45})`;
+        still.style.transform = `scale(${1 + s.local * 0.22})`;
       });
     };
 
@@ -112,30 +112,37 @@ export default function World() {
           SCENES.map((s, i) => (
             <div
               key={s.id}
-              ref={(el) => {
-                stills.current[i] = el;
-              }}
-              className="absolute inset-0 bg-cover bg-center will-change-transform"
-              style={{
-                backgroundImage: `url(${desktop ? s.src : s.sm})`,
-                opacity: i === 0 ? 1 : 0,
-              }}
-            />
+              className="absolute inset-x-0 top-0 h-[68svh] overflow-hidden md:inset-0 md:h-auto"
+            >
+              <div
+                ref={(el) => {
+                  stills.current[i] = el;
+                }}
+                className="absolute inset-0 bg-cover bg-center will-change-transform"
+                style={{
+                  backgroundImage: mounted ? `url(${s.src})` : undefined,
+                  opacity: i === 0 ? 1 : 0,
+                }}
+              />
+            </div>
           ))
         )}
 
         {/* shading, film grain and the soft join with the hero */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(9,8,11,0.8)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(9,8,11,0.8)_100%)] md:block" />
+        {/* phones: the picture melts into the page below it */}
+        <div className="pointer-events-none absolute inset-x-0 top-[40svh] h-[28svh] bg-gradient-to-b from-transparent to-[#09080b] md:hidden" />
         <div className="grain" />
         <div
           ref={topFade}
-          className="pointer-events-none absolute inset-x-0 top-0 h-[30vh] bg-gradient-to-b from-[#09080b] to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[18vh] bg-gradient-to-b from-[#09080b] to-transparent md:h-[30vh]"
         />
 
         {/* text for each scene */}
         <TunnelCopy />
         <HeadquartersCards />
-<AboutCards />
+        <AboutCards />
+
         <div
           ref={endFade}
           className="pointer-events-none absolute inset-0 bg-[#09080b] opacity-0"

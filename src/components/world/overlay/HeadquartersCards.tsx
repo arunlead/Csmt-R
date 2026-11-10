@@ -62,7 +62,7 @@ export default function HeadquartersCards() {
             ref={(el) => {
               cards.current[i] = el;
             }}
-            className="rounded-2xl border border-white/10 bg-black/35 p-6 opacity-0 shadow-[0_0_80px_-30px_rgba(242,194,122,0.55)] backdrop-blur-xl md:p-8"
+            className="rounded-2xl border border-white/10 bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/60 md:bg-black/35 p-6 opacity-0 shadow-[0_0_80px_-30px_rgba(242,194,122,0.55)] backdrop-blur-xl md:p-8"
           >
             <p className="font-mono text-xs text-[#F2C27A]/80">{p.file}</p>
             <h3 className="mt-3 font-[family-name:var(--font-unbounded)] text-2xl font-black leading-tight text-white md:text-3xl">
