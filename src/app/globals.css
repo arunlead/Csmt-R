@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #05070d;
+  --fg: #e9f0ff;
+  --muted: #8b97b3;
+  --ice: #7fd8ff;
+  --magenta: #ff2e93;
+  --amber: #ffb44a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-ice: var(--ice);
+  --color-magenta: var(--magenta);
+  --color-amber: var(--amber);
+  --font-display: var(--font-unbounded);
+  --font-sans: var(--font-instrument);
+    --color-neon: var(--neon);
+  --font-mono: var(--font-jetbrains);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  overflow-x: hidden;
 }
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* terminal typing */
+.type {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing calc(var(--n) * 45ms) steps(var(--n)) forwards;
+  animation-delay: var(--d);
+}
+@keyframes typing { to { width: calc(var(--n) * 1ch); } }
+
+/* glitch headline */
+.glitch { position: relative; }
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+}
+.glitch::before {
+  color: var(--magenta);
+  clip-path: inset(0 0 55% 0);
+  animation: glitch1 4s infinite steps(1);
+}
+.glitch::after {
+  color: var(--ice);
+  clip-path: inset(55% 0 0 0);
+  animation: glitch2 4s infinite steps(1);
+}
+@keyframes glitch1 {
+  0%, 92%, 100% { transform: none; opacity: 0; }
+  93% { transform: translate(-4px, 1px); opacity: 1; }
+  96% { transform: translate(3px, -1px); opacity: 1; }
+}
+@keyframes glitch2 {
+  0%, 90%, 100% { transform: none; opacity: 0; }
+  91% { transform: translate(4px, -1px); opacity: 1; }
+  95% { transform: translate(-3px, 1px); opacity: 1; }
+}
+
+/* hacker eyes */
+.eye-flicker { animation: flicker 5s infinite; }
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  48% { opacity: 1; }
+  50% { opacity: 0.25; }
+  52% { opacity: 1; }
+  80% { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type { width: auto !important; }
+}
+/* HUD scan line */
+.scan {
+  animation: scan 6s linear infinite;
+}
+@keyframes scan {
+  0% { transform: translateY(-10vh); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+/* radar sweep */
+.sweep {
+  background: conic-gradient(from 0deg, rgba(34, 240, 255, 0.4), transparent 70deg);
+  animation: spin 4s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* pipeline flow */
+.flow {
+  background: repeating-linear-gradient(180deg, var(--neon) 0 6px, transparent 6px 14px);
+  background-size: 100% 14px;
+  animation: flowdown 0.9s linear infinite;
+}
+@keyframes flowdown { to { background-position: 0 14px; } }
+
+/* defense log */
+.logscroll { animation: logmove 16s linear infinite; }
+@keyframes logmove { to { transform: translateY(-50%); } }
