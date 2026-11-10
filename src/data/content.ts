@@ -30,6 +30,48 @@ export const team = {
   updated: "20-09-2026",
 };
 
+export const members = [
+  "Mohamed Faizaan",
+  "Arun",
+  "Haroon Rasheed",
+  "Laurence Agbessi",
+  "Robert",
+  "Ritika Nagrale",
+  "Hasheer",
+  "Siddiq",
+  "Abdul Salam",
+  "Raiyan",
+  "Benny",
+  "Vignesh",
+  "Mohamed Fahim",
+  "Manoj",
+  "Hameeth",
+  "Jagar",
+  "Sandhiya",
+  "Arfath Khan",
+  "Irfan Basha",
+  "Jamalludeen",
+  "Akash",
+  "MohamedAslam",
+  "Najeebullah",
+  "Malavika",
+  "Ayub",
+  "Mohammed Farook",
+  "Kamaleshwaran",
+  "Abbas",
+  "Hemanth",
+  "Afra Thasneem",
+  "Mohammed Ibrahim",
+  "Abdul Malik",
+  "Mohamed Hussain",
+  "Jothimani",
+  "Harmaen Zama",
+  "Ashraf",
+  "Mohammed Ashim",
+  "Alniyaz",
+  "Najeebullah",
+];
+
 export type Achievement = { title: string; soon?: boolean };
 
 export const achievements: Achievement[] = [

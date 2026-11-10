@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 /* Change the hrefs to match your real routes */
 const links = [
   { href: "/", label: "Home" },
-  { href: "/members", label: "Member list" },
+  { href: "/#members", label: "Member list" },
   { href: "/about", label: "About us" },
   { href: "/join", label: "Join our group" },
   { href: "/mascot", label: "Mascot page" },
-  { href: "/disclaimer", label: "Disclaimer" },
+  { href: "/#legal", label: "Disclaimer" },
 ];
 
 function Mark() {

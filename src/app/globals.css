@@ -132,3 +132,9 @@ html.lenis, html.lenis body { height: auto; }
     display: none;
   }
 }
+
+.legal-ambient {
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(242, 194, 122, 0.09), transparent 38%),
+    radial-gradient(ellipse at 86% 100%, rgba(229, 154, 107, 0.06), transparent 40%);
+}
