@@ -198,6 +198,7 @@ export default function HeroScrub() {
   return (
     <section
       ref={root}
+      id="home"
       className="relative isolate h-[100svh] w-full overflow-hidden bg-[#09080b] [background-image:radial-gradient(ellipse_70%_75%_at_72%_42%,#2a2013_0%,#14110f_48%,#09080b_100%)]"
     >
       {phone ? (

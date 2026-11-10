@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 
 /* Change the hrefs to match your real routes */
 const links = [
-  { href: "/", label: "Home" },
+  { href: "/#home", label: "Home" },
   { href: "/#members", label: "Member list" },
-  { href: "/about", label: "About us" },
-  { href: "/join", label: "Join our group" },
-  { href: "/mascot", label: "Mascot page" },
+  { href: "/#about", label: "About us" },
+  { href: "/#join", label: "Join our group" },
+  { href: "/#mascot", label: "Mascot page" },
   { href: "/#legal", label: "Disclaimer" },
 ];
 
@@ -71,12 +71,13 @@ export default function Navbar() {
         {/* desktop links */}
         <ul className="hidden items-center gap-0.5 lg:flex">
           {links.map((l) => {
-            const active = pathname === l.href;
+            const active = pathname === "/" && l.href === "/#home";
             return (
               <li key={l.href}>
                 <Link
                   href={l.href}
                   aria-current={active ? "page" : undefined}
+                  onClick={() => setMenu({ pathname, open: false })}
                   className={`relative block rounded-full px-4 py-2 text-[13px] font-medium tracking-wide transition-colors duration-300 ${
                     active ? "bg-white/10 text-white" : "text-white/60 hover:bg-white/5 hover:text-white"
                   }`}
@@ -93,7 +94,8 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/join"
+            href="/#join"
+            onClick={() => setMenu({ pathname, open: false })}
             className="group relative hidden overflow-hidden rounded-full bg-gradient-to-r from-[#FFE0A3] via-[#FFC46B] to-[#FF9F6B] px-5 py-2.5 text-[13px] font-bold tracking-wide text-[#1b1024] transition-transform duration-300 hover:scale-[1.04] sm:inline-block"
           >
             <span className="relative z-10">Join CSMT</span>
@@ -123,6 +125,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
+              onClick={() => setMenu({ pathname, open: false })}
               style={{ transitionDelay: open ? `${i * 40}ms` : "0ms" }}
               className={`flex items-center justify-between rounded-2xl px-4 py-3 text-[15px] transition-all duration-300 ${
                 open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
@@ -132,7 +135,7 @@ export default function Navbar() {
               <span className="font-mono text-[10px] text-white/30">{String(i + 1).padStart(2, "0")}</span>
             </Link>
           ))}
-          <Link href="/join" className="mt-2 block rounded-2xl bg-gradient-to-r from-[#FFE0A3] via-[#FFC46B] to-[#FF9F6B] px-4 py-3 text-center text-[15px] font-bold text-[#1b1024]">
+          <Link href="/#join" onClick={() => setMenu({ pathname, open: false })} className="mt-2 block rounded-2xl bg-gradient-to-r from-[#FFE0A3] via-[#FFC46B] to-[#FF9F6B] px-4 py-3 text-center text-[15px] font-bold text-[#1b1024]">
             Join CSMT
           </Link>
         </div>

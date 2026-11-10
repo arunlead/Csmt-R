@@ -106,6 +106,12 @@ export default function World() {
       className="relative bg-[#09080b]"
       style={{ height: `calc(100svh + ${TOTAL_VH}vh)` }}
     >
+      <span
+        id="about"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 h-px w-px"
+        style={{ top: `${SCENES[0].vh + SCENES[1].vh}vh` }}
+      />
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {useGL ? (
           mounted ? <WorldCanvas active={visible} /> : null

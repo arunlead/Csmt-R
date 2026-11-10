@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { members, team } from "@/data/content";
+import { brand, members, team } from "@/data/content";
 
 export default function Members() {
   const [query, setQuery] = useState("");
@@ -47,7 +47,7 @@ export default function Members() {
               </p>
               <p className="mt-2 text-3xl font-semibold text-white">{team.total}</p>
             </div>
-            <div className="rounded-2xl border border-[#F2C27A]/25 bg-[#F2C27A]/[0.06] p-4 sm:min-w-44 sm:p-5">
+            <div id="join" className="scroll-mt-24 rounded-2xl border border-[#F2C27A]/25 bg-[#F2C27A]/[0.06] p-4 sm:min-w-44 sm:p-5">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#F2C27A]/70">
                 Open places
               </p>
@@ -111,7 +111,15 @@ export default function Members() {
           <p>
             Showing {filteredMembers.length} of {members.length} team members
           </p>
-          <p className="font-mono text-xs">Roster updated {team.updated}</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <p className="font-mono text-xs">Roster updated {team.updated}</p>
+            <a
+              href={`mailto:${brand.email}`}
+              className="rounded-full border border-[#F2C27A]/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#F2C27A] transition hover:border-[#F2C27A]/60 hover:bg-[#F2C27A]/[0.07]"
+            >
+              Ask about joining
+            </a>
+          </div>
         </div>
       </div>
     </section>
